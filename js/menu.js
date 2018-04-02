@@ -24,6 +24,21 @@ const loadPolyfill = function(){
             script.onload = resolve("polyfill");
             console.log("loadPolyfill resolved.");
         }
+        //polyfill 'closest' func
+        if (!Element.prototype.matches){
+            Element.prototype.matches = Element.prototype.msMatchesSelector ||
+                Element.prototype.webkitMatchesSelector;}
+        if (!Element.prototype.closest){
+            Element.prototype.closest = function(s) {
+                let el = this;
+                if (!document.documentElement.contains(el)) return null;
+                    do {
+                        if (el.matches(s)) return el;
+                        el = el.parentElement || el.parentNode;
+                    } while (el !== null && el.nodeType === 1);
+                return null;
+            };
+        }
     });
 }
 
@@ -55,15 +70,16 @@ const loadHeader = function () {
 
 const initMenu = function(){
     return new Promise(function (resolve, reject) {
-        let layout   = document.getElementById('layout'),
-            menu     = document.getElementById('menu'),
-            menuLink = document.getElementById('menuLink'),
-            content  = document.getElementById('main');
-        menuLink.onclick = function (e) {
-            toggleAll(e);
-        };
-        content.onclick = function(e) {
-            if (menu.className.indexOf('active') !== -1) {toggleAll(e);}
+        document.onclick = function(e) {
+            if (menu.className.indexOf('active') !== -1) {
+                if (!(e.target).closest('#menu')) {
+                    toggleAll(e);
+                }
+            }else{
+                if ((e.target).closest('#menuLink')) {
+                    toggleAll(e);
+                }
+            }
         };
         resolve("initMenu");
         console.log("initMenu resolved.")
@@ -72,9 +88,9 @@ const initMenu = function(){
 
 const toggleAll = function(e) {
     e.preventDefault();
-    layout.classList.toggle('active');
-    menu.classList.toggle('active');
-    menuLink.classList.toggle('active');
+    document.getElementById('layout').classList.toggle('active');
+    document.getElementById('menu').classList.toggle('active');
+    document.getElementById('menuLink').classList.toggle('active');
 }
 
 /* --------------------------------------------------------------- */
