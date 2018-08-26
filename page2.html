@@ -14,7 +14,21 @@
 <body>
 
 <div id="layout">
-<header>Pure.css Web Components Menu Example</header>
+<header>
+<nav id="brand">Pure.css Web Components Menu Example</nav>
+
+<!-- Menu toggle -->
+<a href="#menu" id="menuLink" class="menu-link">
+  <!-- Hamburger icon -->
+  <span></span>
+</a>
+
+<nav id="menu">
+  <div class="pure-menu custom-restricted-width">
+    <ul id="menuList" class="pure-menu-list"></ul>
+  </div>
+</nav>
+</header>
 
 <div id="main">
 <h1>Title 2</h1>
