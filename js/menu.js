@@ -10,7 +10,8 @@ BSD License
 https://github.com/yahoo/pure/blob/master/LICENSE.md
 */
 
-/* set menu here */
+/* set title and menu here */
+const title = "Pure.css Side-menu Example";
 const menuDict = {
     "Top":"index.html",
     "Page 2":"page2.html",
@@ -47,6 +48,7 @@ const loadPolyfill = function(){
 
 const loadHeader = function () {
     return new Promise(function (resolve, reject) {
+        document.getElementById("brand").innerHTML = title;
         for(let key in menuDict){
             let li1=document.createElement('li');
             li1.className='pure-menu-item';

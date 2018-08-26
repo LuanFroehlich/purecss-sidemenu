@@ -1,8 +1,9 @@
-# Pure.css with menu
+# Pure.css Side-menu
 
-Website template based on https://purecss.io/layouts/side-menu/ . The most important improvement is to share the menu as hash map in `menu.js`
+Website template based on https://purecss.io/layouts/side-menu/ . The most important improvement is to share the title and menu in `menu.js`
 
 ```JavaScript
+const title = "Pure.css Side-menu Example";
 const menuDict = {
     "Top":"index.html",
     "Page 2":"page2.html",
@@ -11,7 +12,7 @@ const menuDict = {
 }
 ```
 
-Demo is availabe here: https://cm3.github.io/purecss-withmenu/
+Demo is availabe here: https://cm3.github.io/purecss-sidemenu/
 
 ## Design policy
 
